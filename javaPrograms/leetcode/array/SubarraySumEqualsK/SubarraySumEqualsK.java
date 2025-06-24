@@ -7,10 +7,11 @@ public class SubarraySumEqualsK {
     public static void main(String[] args) {
 
         //int[] nums = {1,1,0,0,1,1,1,1,0,1,1,0,0,0,1};
-        int[] nums = {1,1,1,1,1,1,1};
+        int[] nums = {1, 1, 1, 1, 1, 1, 1};
         System.out.println(new Solution().subarraySum(nums, 3));
     }
 }
+
 class Solution {
     public int subarraySum(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
@@ -20,11 +21,11 @@ class Solution {
         int counter = 0;
 
 
-        for (int i: nums ) {
+        for (int i : nums) {
             counter += i;
 
-            if(map.containsKey(counter-k)) {
-                kcount += map.get(counter-k);
+            if (map.containsKey(counter - k)) {
+                kcount += map.get(counter - k);
             }
 
             map.put(counter, map.getOrDefault(counter, 0) + 1);

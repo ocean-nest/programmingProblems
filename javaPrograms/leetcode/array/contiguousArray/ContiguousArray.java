@@ -7,13 +7,13 @@ public class ContiguousArray {
 
     public static void main(String args[]) {
 
-        int[] nums = {1,1,0,0,1,1,1,1,0,1,1,0,0,0,1};
+        int[] nums = {1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1};
         System.out.println(new Sloution().findMaxLength(nums));
     }
 
 }
 
- class Sloution {
+class Sloution {
     public int findMaxLength(int[] nums) {
 
         Map<Integer, Integer> map = new HashMap<>();
@@ -23,15 +23,15 @@ public class ContiguousArray {
         int counter = 0;
 
 
-        for (int i=0; i< nums.length; i++ ) {
+        for (int i = 0; i < nums.length; i++) {
 
-            if(nums[i] == 1) {
+            if (nums[i] == 1) {
                 counter++;
             } else {
                 counter--;
             }
 
-            if(map.containsKey(counter)) {
+            if (map.containsKey(counter)) {
                 maxLength = Math.max(i - map.get(counter), maxLength);
             } else {
                 map.put(counter, i);
