@@ -16,23 +16,17 @@ class Solution {
 
         List<List<Integer>> outerList = new ArrayList<>();
 
-        Map<List<Integer>, Integer> map = new HashMap<>();
+        Set<List<Integer>> set = new HashSet<>();
 
         for(int i=0; i< nums.length; i++) {
             for(int j=i+1; j<nums.length; j++) {
                 for(int k=j+1; k<nums.length;k++) {
                     if(nums[i] + nums[j] + nums[k] == 0) {
-                        List<Integer> innerList = new ArrayList<>();
-                        innerList.add(nums[i]);
-                        innerList.add(nums[j]);
-                        innerList.add(nums[k]);
-
+                        List<Integer> innerList = Arrays.asList(new Integer[] {nums[i], nums[j], nums[k]});
                         Collections.sort(innerList);
-
-                        if(!map.containsKey(innerList)) {
-                            map.put(innerList, 1);
+                        if(!set.contains(innerList)) {
+                            set.add(innerList);
                             outerList.add(innerList);
-
                         }
                     }
                 }
