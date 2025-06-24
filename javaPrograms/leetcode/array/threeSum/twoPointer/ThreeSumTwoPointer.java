@@ -1,4 +1,4 @@
-package threeSum.ncubeSolution;
+package threeSum.twoPointer;
 
 import java.util.*;
 
