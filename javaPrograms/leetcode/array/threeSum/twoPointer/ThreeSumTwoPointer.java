@@ -42,7 +42,6 @@ class Solution2 {
                 } else {
                     left++;
                 }
-
             }
             fixed++;
         }
