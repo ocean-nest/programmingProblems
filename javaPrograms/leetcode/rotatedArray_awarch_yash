@@ -1,0 +1,34 @@
+class Solution {
+    private int binarySearch(int[] nums, int target, int left, int right) {
+
+        while(left<=right) {
+            int mid = (left+right)/2;
+
+            if(nums[mid] == target) {
+                return mid;
+            }
+            if(nums[mid] < target) {
+                left = mid+1;
+            } else {
+                right = mid-1;
+            }
+        }
+        return -1;
+    }
+
+    public int search(int[] nums, int target) {
+
+        int pivot=nums.length;
+        for(int i=0; i<nums.length-1; i++) {
+            if(nums[i]>nums[i+1]) {
+                pivot=i+1;
+            }
+        }
+
+        if(target >= nums[0]) {
+            return binarySearch(nums, target, 0, pivot-1);
+        }
+
+        return binarySearch(nums, target, pivot, nums.length-1);
+    }
+}

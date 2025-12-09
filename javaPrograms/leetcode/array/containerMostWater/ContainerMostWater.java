@@ -1,4 +1,4 @@
-package containerMostWater;
+package leetcode.array.containerMostWater;
 
 public class ContainerMostWater {
     public static void main(String args[]) {

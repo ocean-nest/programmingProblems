@@ -1,0 +1,76 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        if(lists.length == 0)
+            return null;
+        ListNode[] result = divideandConquer(lists);
+        return (result == null ) ? null : result[0];
+    }
+
+    public ListNode[] divideandConquer(ListNode[] lists) {
+        if(lists.length==1 && lists[0] == null) {
+            return null;
+        }
+        else if(lists.length==1){
+            return lists;
+        }
+        else {
+            int size = (lists.length%2==1) ? (lists.length/2)+1 : lists.length/2;
+            ListNode[] tempLists = new ListNode[size];
+            int left = 0, current=0, right=lists.length-1;
+            while(left < right)
+                tempLists[current++] = mergeTwo(lists[left++], lists[right--]);
+
+            if(left==right)
+                tempLists[current++] = lists[left++];
+
+            return divideandConquer(tempLists);
+        }
+    }
+
+    public ListNode mergeTwo(ListNode list1, ListNode list2) {
+        ListNode first=list1;
+        ListNode second=list2;
+        ListNode mergedOriginal = new ListNode(0, null);
+        ListNode merged = mergedOriginal;
+
+        while(first != null && second != null) {
+            if(first.val > second.val) {
+                ListNode node = new ListNode(second.val, null);
+                merged.next = node;
+                merged = merged.next;
+                second = second.next;
+            }
+            else {
+                ListNode node = new ListNode(first.val, null);
+                merged.next = node;
+                merged = merged.next;
+                first = first.next;
+            }
+        }
+
+        while(first != null) {
+            ListNode node = new ListNode(first.val, null);
+            merged.next = node;
+            merged = merged.next;
+            first = first.next;
+        }
+        while(second != null) {
+            ListNode node = new ListNode(second.val, null);
+            merged.next = node;
+            merged = merged.next;
+            second = second.next;
+        }
+        mergedOriginal = mergedOriginal.next;
+        return mergedOriginal;
+    }
+}

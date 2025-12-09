@@ -1,0 +1,39 @@
+class Solution {
+    public String longestPalindrome(String s) {
+
+        if(s.length() <=1) return s;
+
+        int maxLength = 1;
+        String maxString = s.substring(0,1);
+
+
+        for(int i=0; i<s.length(); i++) {
+
+            String odd = expandFromCentre(s,i,i);
+            String even = expandFromCentre(s,i,i+1);
+
+            if(odd.length() > maxLength) {
+                maxLength = odd.length();
+                maxString = odd;
+            }
+
+             if(even.length() > maxLength) {
+                maxLength = even.length();
+                maxString = even;
+            }
+        }
+
+        return maxString;
+
+    }
+
+    public String expandFromCentre(String pali, int left, int right) {
+
+        while(left>=0 && right < pali.length() && pali.charAt(left) == pali.charAt(right)) {
+            left--;
+            right++;
+        }
+
+        return pali.substring(left+1, right);
+    }
+}

@@ -1,0 +1,54 @@
+class Solution {
+    public boolean isNumber(String s) {
+        try {
+            double d = Double.valueOf(s);
+            if(s.charAt(s.length()-1) == 'f' || s.charAt(s.length()-1) == 'D'
+                || s.equals("+Infinity") || s.equals("-Infinity") || s.equals("Infinity")) {
+                return false;
+            }
+        }
+        catch(NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+}
+
+class Solution {
+    public boolean isNumber(String s) {
+        if(s == null && s.trim() =="") {
+            return false;
+        }
+
+        boolean seenN = false;
+        boolean seenD = false;
+        boolean seenE = false;
+
+        for(int i=0; i<s.length(); ++i) {
+            char c = s.charAt(i);
+
+            switch(c) {
+                case '.': if(seenD || seenE) return false;
+                seenD = true;
+                break;
+
+                case 'e':
+                case 'E': if(seenE || !seenN) return false;
+                seenE = true;
+                seenN = false;
+                break;
+
+                case '+':
+                case '-': if(i != 0 && (s.charAt(i-1) != 'e' && s.charAt(i-1) != 'E') ) return false;
+                seenN = false;
+                break;
+
+                default :
+                if(c - '0' < 0 || c - '0' > 9) return false;
+                seenN = true;
+            }
+        }
+
+        return seenN;
+    }
+}
