@@ -1,0 +1,4 @@
+Here is a simple chunk processing pattern in Java. It processes
+large reconciliation files(like CSV) line-by-line using standard streams, groups them into
+small memory chunks and processes them safely using multithreaded pool
+
